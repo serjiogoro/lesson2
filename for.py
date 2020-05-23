@@ -23,18 +23,27 @@ sc = 0
 for st in sts:
     if st['school_class'] not in cl_list:
         cl_list.append(st['school_class'])
-    for s in st['scores']:
-        cn += 1
-        sc += s
+    # проще и быстрее сделать так:
+    cn += len(st['scores'])
+    sc += sum(st['scores']) 
+    # for s in st['scores']:
+    #     cn += 1
+    #     sc += s
 print(f'Средняя оценка в школе: {sc/cn}')
 cn = 0
 sc = 0
 for c in cl_list:
     for st in sts:
         if st['school_class'] == c:
-            for s in st['scores']:
-                cn += 1
-                sc += s
+            cn += len(st['scores'])
+            sc += sum(st['scores'])
+            # for s in st['scores']:
+            #     cn += 1
+            #     sc += s
     print(f'Средняя оценка в {c} классе: {sc/cn}')
     cn = 0
     sc = 0
+
+# эти две задачи можно объеденить в один цикл и считать все в одном for
+# итерироваться по всем классам: считать сумму классу и кол-во учеников, записывать среднее
+# использовать данные из п2 для расчета среднего по школе
